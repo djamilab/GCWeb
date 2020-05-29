@@ -15,11 +15,10 @@
 	 * not once per instance of plugin on the page. So, this is a good place to define
 	 * variables that are common to all instances of the plugin on a page.
 	 */
-var componentName = "wb-im-popup",		// Define the name of the plugin and the class name to use in order to initiate it
+var componentName = "wb-popup-im",		// Define the name of the plugin and the class name to use in order to initiate it
 	selector = "." + componentName,
 	initEvent = "wb-init" + selector,
 	$document = wb.doc,
-	defaults = {},
 
 	/*
 	* main gc-im variables
@@ -318,10 +317,20 @@ var componentName = "wb-im-popup",		// Define the name of the plugin and the cla
 
 		$.getJSON(
 		dbURL,
-		function( result ) {
-			surveyDB = result;
+		function() {
+			consoleLog( "Get Json File is Successful" );
+		} )
+		.done( function( result ) {
+			surveyDB = JSON.parse( JSON.stringify( result ) );
 			surveySelection();
+		} )
+		.fail( function() {
+			consoleLog( "Fail to get JSON File" );
+		} )
+		.always( function() {
+			consoleLog( "JSON file Complete" );
 		} );
+
 	},
 
 
@@ -520,7 +529,7 @@ var componentName = "wb-im-popup",		// Define the name of the plugin and the cla
 	*/
 	invite = function( survey ) {
 
-		var elm =
+		var html =
 		"<aside id='gc-im-popup' class='wb-overlay wb-overlay-im modal-content-im overlay-def wb-popup-im'>" +
 			"<header class='modal-header'>" +
 				"<h2 class='modal-title'>" + survey[ "title-" + wb.lang ] + "</h2>" +
@@ -538,11 +547,11 @@ var componentName = "wb-im-popup",		// Define the name of the plugin and the cla
 			"</div>" +
 		"</aside>",
 
-			$elm = $( elm );
+			$html = $( html );
 
 
 		// Insert the overlay directly after the <main> element.
-		$( "main" ).after( $elm );
+		$( "main" ).before( $html );
 
 		// trigger the open event of the overlay
 		$( "#gc-im-popup" ).trigger( "open.wb-overlay" );
@@ -563,21 +572,13 @@ var componentName = "wb-im-popup",		// Define the name of the plugin and the cla
 		* returns undefined = do not proceed with init (e.g., already initialized)
 		*/
 		var elm = wb.init( event, componentName, selector ),
-			$elm,
-			settings;
-
+			$elm;
 
 		if ( elm ) {
 
 			$elm = $( elm );
-			settings = $.extend(
-				true,
-				{},
-				defaults,
-				wb.getData( $elm, componentName )
-			);
 
-			imPath = settings( "data-wb-popup-im-path" );
+			imPath = $( elm ).attr( "data-wb-popup-im-path" );
 
 			// plugin initialisation
 
@@ -626,12 +627,6 @@ $( document ).on( "click vclick mouseup keydown", selector, function( event ) {
 		.removeClass( "open" )
 		.attr( "aria-hidden", "true" );
 
-		// Set a flag to indicate the overlay is closing.
-		// Needed to prevent IE11 (possibly also IE8-10/Edge) from failing to return
-		// user focus when closing the overlay (due to a separate focusin event triggering
-		// too quickly and clearing the user focus variable before it's needed).
-		//overlayIsClosing = 1;
-
 		// Hide the overlay immediately.
 		$( this ).hide();
 
@@ -645,24 +640,6 @@ $( document ).on( "click vclick mouseup keydown", selector, function( event ) {
 			$elm.empty();
 		}, 1000 );
 
-		// Determine the cookie's new value, depending on the ID of which link/button was clicked.
-		// Don't set the cookie's value to yes/no if the Esc key was pressed.
-		/*if ( $( event.target ).closest( "#survey-yes", this ).length &&
-			!( ( event.type === "keydown" ) && ( event.which === 27 ) ) ) {
-			cookieValue = "yes";
-		} else if ( $( event.target ).closest( "#survey-no", this ).length && ! ( ( event.type === "keydown" ) && ( event.which === 27 ) ) ) {
-			cookieValue = "no";
-		} else {
-			cookieValue = "closed";
-		}*/
-
-
-		// Return the user's focus to where they were before the overlay stole it, then delete the user focus variable.
-		// Otherwise, return the user's focus to the H1 element (or if it doesn't exist - the next element, which is likely to be main).
-		// Needed to prevent browsers from unexpectedly returning focus to the top of the page
-		/*if ( $userFocus ) {
-			$userFocus.trigger( "setfocus.wb" );
-			$userFocus = null;*/
 	} else {
 
 		// Does the H1 exist? If yes, focus to it
