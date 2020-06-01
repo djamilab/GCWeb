@@ -101,8 +101,8 @@
     "close-fr" : "Fermer : Sondage de fin de visite (touche d&apos;échappement)",
     "survey_name" : "ESDC - MSCA Feedback Form - Thank you page",
     "tbl_survey_urls" : [
-      { "url" : "localhost:8000/demos/invitationmanager/test.html"}
-      { "url" : "localhost:8000/demos/invitationmanager/im-en.html"}
+      { "url" : "localhost:8000/demos/invitationmanager/test.html"},
+      { "url" : "localhost:8000/demos/invitationmanager/im-en.html"},
       { "url" : "localhost:8000/demos/invitationmanager/im-fr.html"}
     ]
   },
