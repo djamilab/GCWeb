@@ -132,7 +132,7 @@ An invitation popup always contains the following information – that is custom
 <section>
 <h2>How does the Invitation Manager work?</h2>
 <p>Once properly set up, the GC Invitation Manager script will run in the background of the target GC web site, and is triggered once a visitor enters the GC website. Upon entry, the visitor is assessed against specific criteria to determine whether or not the visitor qualifies for a popup invitation.</p>
-<p>The GC Invitation Manager criteria are based on executable steps. If at any of these steps a visitor is qualified, the remainder of the steps will not execute and the visitor will automatically not qualify for an invitation popup:</p>
+<p>The GC Invitation Manager criteria are based on executable steps. If at any of these steps a visitor is not qualified, the remainder of the steps will not execute and the visitor will automatically not qualify for an invitation popup:</p>
 <ul>
 <li><p>Step 1: JavaScript is enabled on the visitor’s web browser and cookies are allowed.</p></li>
 <li><p>Step 2: The Visitor has not seen an invitation popup during the set designated period within the <code>Persistent_cookie_duration</code> parameter. (Example: the last 15 days)</p></li>

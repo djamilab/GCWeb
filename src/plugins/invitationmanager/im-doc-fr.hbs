@@ -1,6 +1,6 @@
 ---
 {
-	"title": "Gestionnaire D'Invitation - Documentation",
+	"title": "Gestionnaire d'Invitation - Documentation",
 	"language": "fr",
 	"category": "Plugiciels",
 	"description": "Gérer le panneau du sondage du GC",
@@ -137,7 +137,7 @@ Un panneau d’invitation contient toujours les informations suivantes – qui s
 <p>Les critères du Gestionnaire d’Invitation sont basés sur l’exécution des étapes dans un certain ordre. Si à n’importe de quelle étape le visiteur est disqualifié, le reste des étapes ne seront pas exécutées et le visiteur ne sera pas qualifié pour un panneau d’invitation:</p>
 <ul>
 <li><p>Etape 1: JavaScript est activée dans le navigateur web du visiteur et les cookies sont permis. </p></li>
-<li><p>Etape 2: Le visiteur n’a pas reçu un panneau d’invitation depuis la période indiquée dans le paramètre  <code>Persistent_cookie_duration</code> parameter. (Exemple: les derniers 15 jours)</p></li>
+<li><p>Etape 2: Le visiteur n’a pas reçu un panneau d’invitation depuis la période indiquée dans le paramètre  <code>Persistent_cookie_duration</code>. (Exemple: les derniers 15 jours)</p></li>
 <li><p>Etape 3: Un nombre aléatoire est généré pour la portée du visiteur  (portée Page ou portée Site wide).</p></li>
 <li><p>Etape 4: Est-ce que la page web spécifique visitée est qualifiée pour les sondages au moment où la page web est affichée ? (les paramètres <code>start_date_time</code> et <code>end_date_time</code>)</p></li>
 <li><p>Etape 5: Est-ce que la page visitée fait partie du Whitelist et ne fait pas partie du Blacklist des pages du GC?</p></li>
@@ -150,5 +150,5 @@ Un panneau d’invitation contient toujours les informations suivantes – qui s
 </section>
 <section>
 <h2> Code source</h2>
-<p><a href="https://github.com/wet-boew/GCWeb/tree/master/src/plugins/invitationmanager">Source code dans GitHub du plugin Gestionnaire d’Invitation</a></p>
+<p><a href="https://github.com/wet-boew/GCWeb/tree/master/src/plugins/invitationmanager">Code source dans GitHub du plugin Gestionnaire d’Invitation</a></p>
 </section>
